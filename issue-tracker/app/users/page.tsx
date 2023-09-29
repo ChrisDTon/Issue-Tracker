@@ -3,6 +3,7 @@ import React from 'react'
 interface User {/* To give const users an expected type so that the later arrow function for user works */
     id: number;
     name: string;
+    email: string;
 }
 
 const UsersPage = async () => {
@@ -16,9 +17,19 @@ const UsersPage = async () => {
     <>
         <h1>Users</h1>
         <p>{new Date().toLocaleTimeString()}</p>
-        <ul>{/* Unordered list of all users fetched from placeholder site */}
-            {users.map(user => <li key={user.id}>{user.name}</li>)}{/* Makes an unordered list of all the users using their id as primary key */}
-        </ul>
+        <table className='table table-bordered'>{/* Table of all users fetched from placeholder site */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td></tr>)}{/* Makes rows of all the users using their id as primary key */}
+          </tbody>
+        </table>
     </>
   )
 }
